@@ -1,0 +1,28 @@
+{
+  "manifest_version": 3,
+  "name": "Eko4u Workshop CSV Exporter",
+  "version": "1.1",
+  "description": "Captures the last POST to configurator.workshop and formats payload + price as CSV",
+  "permissions": [
+    "webRequest",
+    "storage",
+    "tabs",
+    "scripting"
+  ],
+  "host_permissions": [
+    "https://eko4u.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Eko4u CSV Exporter"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["interceptor.js"],
+      "matches": ["https://eko4u.com/*"]
+    }
+  ]
+}
