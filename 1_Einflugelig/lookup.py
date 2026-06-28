@@ -12,6 +12,8 @@ ITEMS = {
     "RU LEWE": "dreykipp",
 }
 
+POSITIONS_PAYLOAD_CODE={"unten":1,"oben":0,"links":2,"rechts":3}
+
 
 BE82_ZUSTAPROFILES={
   "oben": [
@@ -84,7 +86,7 @@ BE92_ZUSTAPROFILES={
     { "code_name": "INVISIVENT", "title": "Lüfter RENSON INVISIVENT" },
     { "code_name": "SL_476164", "title": "476164 Verbreiterung 40 mm / BE92" },
     { "code_name": "SL_476170", "title": "476170 Verbreiterung 60 mm / BE92" },
-    { "code_name": "SL_406140", "title": "406140  Fensterbankanschluss 40 x 20 mm" },
+    #{ "code_name": "SL_406140", "title": "406140  Fensterbankanschluss 40 x 20 mm" },
     { "code_name": "SL_406177", "title": "406177 Verbreiterung 100x60 mm / SL 76" },
     { "code_name": "SL_416133", "title": "416133  Fensterbankanschluss 30 x 21 mm" },
     { "code_name": "SL_416135", "title": "416135  Fensterbankanschluss 50 x 21 mm" },
@@ -97,13 +99,13 @@ BE92_ZUSTAPROFILES={
     { "code_name": "SL_416168", "title": "416168 Verbreiterung 60x60 mm / SL 76 (alternativ für BE92)" },
     { "code_name": "SL_416170", "title": "416170 Verbreiterung 60 mm / SL 76" },
     { "code_name": "SL_416177", "title": "416177 Verbreiterung 100 mm / SL 76 (alternativ für BE92)" },
-    { "code_name": "SL_406105", "title": "406105  Fensterbankanschluss 20 x 10 mm" },
+    #{ "code_name": "SL_406105", "title": "406105  Fensterbankanschluss 20 x 10 mm" },
     { "code_name": "SL_416148", "title": "406105 / 416148 Fensterbankanschluss 20 x 10 mm" }
   ],
   "links": [
     { "code_name": "SL_476164", "title": "476164 Verbreiterung 40 mm / BE92" },
     { "code_name": "SL_476170", "title": "476170 Verbreiterung 60 mm / BE92" },
-    { "code_name": "SL_406140", "title": "406140  Fensterbankanschluss 40 x 20 mm" },
+    #{ "code_name": "SL_406140", "title": "406140  Fensterbankanschluss 40 x 20 mm" },
     { "code_name": "SL_406177", "title": "406177 Verbreiterung 100x60 mm / SL 76" },
     { "code_name": "SL_416133", "title": "416133  Fensterbankanschluss 30 x 21 mm" },
     { "code_name": "SL_416135", "title": "416135  Fensterbankanschluss 50 x 21 mm" },
@@ -116,13 +118,13 @@ BE92_ZUSTAPROFILES={
     { "code_name": "SL_416168", "title": "416168 Verbreiterung 60x60 mm / SL 76 (alternativ für BE92)" },
     { "code_name": "SL_416170", "title": "416170 Verbreiterung 60 mm / SL 76" },
     { "code_name": "SL_416177", "title": "416177 Verbreiterung 100 mm / SL 76 (alternativ für BE92)" },
-    { "code_name": "SL_406105", "title": "406105  Fensterbankanschluss 20 x 10 mm" },
+    #{ "code_name": "SL_406105", "title": "406105  Fensterbankanschluss 20 x 10 mm" },
     { "code_name": "SL_416148", "title": "406105 / 416148 Fensterbankanschluss 20 x 10 mm" }
   ],
   "unten": [
     { "code_name": "SL_476164", "title": "476164 Verbreiterung 40 mm / BE92" },
     { "code_name": "SL_476170", "title": "476170 Verbreiterung 60 mm / BE92" },
-    { "code_name": "SL_406140", "title": "406140  Fensterbankanschluss 40 x 20 mm" },
+    #{ "code_name": "SL_406140", "title": "406140  Fensterbankanschluss 40 x 20 mm" },
     { "code_name": "SL_406177", "title": "406177 Verbreiterung 100x60 mm / SL 76" },
     { "code_name": "SL_416133", "title": "416133  Fensterbankanschluss 30 x 21 mm" },
     { "code_name": "SL_416135", "title": "416135  Fensterbankanschluss 50 x 21 mm" },
@@ -135,7 +137,7 @@ BE92_ZUSTAPROFILES={
     { "code_name": "SL_416168", "title": "416168 Verbreiterung 60x60 mm / SL 76 (alternativ für BE92)" },
     { "code_name": "SL_416170", "title": "416170 Verbreiterung 60 mm / SL 76" },
     { "code_name": "SL_416177", "title": "416177 Verbreiterung 100 mm / SL 76 (alternativ für BE92)" },
-    { "code_name": "SL_406105", "title": "406105  Fensterbankanschluss 20 x 10 mm" },
+    #{ "code_name": "SL_406105", "title": "406105  Fensterbankanschluss 20 x 10 mm" },
     { "code_name": "SL_416106", "title": "416106  Fensterbankanschluss  4 Kammern / Höhe 30 mm" },
     { "code_name": "SL_416122", "title": "416122  Fensterbankanschluss  2 Kammern / Höhe 20 mm" },
     { "code_name": "SL_416131", "title": "416131  Fensterbankanschluss  2 kammer / Höhe 30 mm" },
@@ -146,7 +148,7 @@ BE92_ZUSTAPROFILES={
   "rechts": [
     { "code_name": "SL_476164", "title": "476164 Verbreiterung 40 mm / BE92" },
     { "code_name": "SL_476170", "title": "476170 Verbreiterung 60 mm / BE92" },
-    { "code_name": "SL_406140", "title": "406140  Fensterbankanschluss 40 x 20 mm" },
+    #{ "code_name": "SL_406140", "title": "406140  Fensterbankanschluss 40 x 20 mm" },
     { "code_name": "SL_406177", "title": "406177 Verbreiterung 100x60 mm / SL 76" },
     { "code_name": "SL_416133", "title": "416133  Fensterbankanschluss 30 x 21 mm" },
     { "code_name": "SL_416135", "title": "416135  Fensterbankanschluss 50 x 21 mm" },
@@ -159,7 +161,7 @@ BE92_ZUSTAPROFILES={
     { "code_name": "SL_416168", "title": "416168 Verbreiterung 60x60 mm / SL 76 (alternativ für BE92)" },
     { "code_name": "SL_416170", "title": "416170 Verbreiterung 60 mm / SL 76" },
     { "code_name": "SL_416177", "title": "416177 Verbreiterung 100 mm / SL 76 (alternativ für BE92)" },
-    { "code_name": "SL_406105", "title": "406105  Fensterbankanschluss 20 x 10 mm" },
+    #{ "code_name": "SL_406105", "title": "406105  Fensterbankanschluss 20 x 10 mm" },
     { "code_name": "SL_416148", "title": "406105 / 416148 Fensterbankanschluss 20 x 10 mm" }
   ]
 }
@@ -167,8 +169,8 @@ BE92_ZUSTAPROFILES={
 GE76_2D_ZUSTAPROFILES={
   "oben": [
     { "code_name": "INVISIVENT", "title": "Lüfter RENSON INVISIVENT" },
-    { "code_name": "SL_406140", "title": "406140  Fensterbankanschluss 40 x 20 mm" },
-    { "code_name": "SL_406158", "title": "406158 Fensterbankanschluss 21 x 20 mm" },
+    #{ "code_name": "SL_406140", "title": "406140  Fensterbankanschluss 40 x 20 mm" },
+    #{ "code_name": "SL_406158", "title": "406158 Fensterbankanschluss 21 x 20 mm" },
     { "code_name": "SL_406177", "title": "406177 Verbreiterung 100x60 mm / SL 76" },
     { "code_name": "SL_416133", "title": "416133  Fensterbankanschluss 30 x 21 mm" },
     { "code_name": "SL_416135", "title": "416135  Fensterbankanschluss 50 x 21 mm" },
@@ -182,12 +184,12 @@ GE76_2D_ZUSTAPROFILES={
     { "code_name": "SL_416168", "title": "416168 Verbreiterung 60x60 mm / SL 76 (alternativ für BE92)" },
     { "code_name": "SL_416170", "title": "416170 Verbreiterung 60 mm / SL 76" },
     { "code_name": "SL_416177", "title": "416177 Verbreiterung 100 mm / SL 76 (alternativ für BE92)" },
-    { "code_name": "SL_406105", "title": "406105  Fensterbankanschluss 20 x 10 mm" },
+    #{ "code_name": "SL_406105", "title": "406105  Fensterbankanschluss 20 x 10 mm" },
     { "code_name": "SL_416148", "title": "406105 / 416148 Fensterbankanschluss 20 x 10 mm" }
   ],
   "links": [
-    { "code_name": "SL_406140", "title": "406140  Fensterbankanschluss 40 x 20 mm" },
-    { "code_name": "SL_406158", "title": "406158 Fensterbankanschluss 21 x 20 mm" },
+    #{ "code_name": "SL_406140", "title": "406140  Fensterbankanschluss 40 x 20 mm" },
+    #{ "code_name": "SL_406158", "title": "406158 Fensterbankanschluss 21 x 20 mm" },
     { "code_name": "SL_406177", "title": "406177 Verbreiterung 100x60 mm / SL 76" },
     { "code_name": "SL_416133", "title": "416133  Fensterbankanschluss 30 x 21 mm" },
     { "code_name": "SL_416135", "title": "416135  Fensterbankanschluss 50 x 21 mm" },
@@ -201,12 +203,12 @@ GE76_2D_ZUSTAPROFILES={
     { "code_name": "SL_416168", "title": "416168 Verbreiterung 60x60 mm / SL 76 (alternativ für BE92)" },
     { "code_name": "SL_416170", "title": "416170 Verbreiterung 60 mm / SL 76" },
     { "code_name": "SL_416177", "title": "416177 Verbreiterung 100 mm / SL 76 (alternativ für BE92)" },
-    { "code_name": "SL_406105", "title": "406105  Fensterbankanschluss 20 x 10 mm" },
+    #{ "code_name": "SL_406105", "title": "406105  Fensterbankanschluss 20 x 10 mm" },
     { "code_name": "SL_416148", "title": "406105 / 416148 Fensterbankanschluss 20 x 10 mm" }
   ],
   "unten": [
-    { "code_name": "SL_406140", "title": "406140  Fensterbankanschluss 40 x 20 mm" },
-    { "code_name": "SL_406158", "title": "406158 Fensterbankanschluss 21 x 20 mm" },
+    #{ "code_name": "SL_406140", "title": "406140  Fensterbankanschluss 40 x 20 mm" },
+    #{ "code_name": "SL_406158", "title": "406158 Fensterbankanschluss 21 x 20 mm" },
     { "code_name": "SL_406177", "title": "406177 Verbreiterung 100x60 mm / SL 76" },
     { "code_name": "SL_416133", "title": "416133  Fensterbankanschluss 30 x 21 mm" },
     { "code_name": "SL_416135", "title": "416135  Fensterbankanschluss 50 x 21 mm" },
@@ -221,7 +223,7 @@ GE76_2D_ZUSTAPROFILES={
     { "code_name": "SL_416168", "title": "416168 Verbreiterung 60x60 mm / SL 76 (alternativ für BE92)" },
     { "code_name": "SL_416170", "title": "416170 Verbreiterung 60 mm / SL 76" },
     { "code_name": "SL_416177", "title": "416177 Verbreiterung 100 mm / SL 76 (alternativ für BE92)" },
-    { "code_name": "SL_406105", "title": "406105  Fensterbankanschluss 20 x 10 mm" },
+    #{ "code_name": "SL_406105", "title": "406105  Fensterbankanschluss 20 x 10 mm" },
     { "code_name": "SL_416106", "title": "416106  Fensterbankanschluss  4 Kammern / Höhe 30 mm" },
     { "code_name": "SL_416122", "title": "416122  Fensterbankanschluss  2 Kammern / Höhe 20 mm" },
     { "code_name": "SL_416131", "title": "416131  Fensterbankanschluss  2 kammer / Höhe 30 mm" },
@@ -232,8 +234,8 @@ GE76_2D_ZUSTAPROFILES={
     { "code_name": "SL_416148", "title": "406105 / 416148 Fensterbankanschluss 20 x 10 mm" }
   ],
   "rechts": [
-    { "code_name": "SL_406140", "title": "406140  Fensterbankanschluss 40 x 20 mm" },
-    { "code_name": "SL_406158", "title": "406158 Fensterbankanschluss 21 x 20 mm" },
+    #{ "code_name": "SL_406140", "title": "406140  Fensterbankanschluss 40 x 20 mm" },
+    #{ "code_name": "SL_406158", "title": "406158 Fensterbankanschluss 21 x 20 mm" },
     { "code_name": "SL_406177", "title": "406177 Verbreiterung 100x60 mm / SL 76" },
     { "code_name": "SL_416133", "title": "416133  Fensterbankanschluss 30 x 21 mm" },
     { "code_name": "SL_416135", "title": "416135  Fensterbankanschluss 50 x 21 mm" },
@@ -247,7 +249,7 @@ GE76_2D_ZUSTAPROFILES={
     { "code_name": "SL_416168", "title": "416168 Verbreiterung 60x60 mm / SL 76 (alternativ für BE92)" },
     { "code_name": "SL_416170", "title": "416170 Verbreiterung 60 mm / SL 76" },
     { "code_name": "SL_416177", "title": "416177 Verbreiterung 100 mm / SL 76 (alternativ für BE92)" },
-    { "code_name": "SL_406105", "title": "406105  Fensterbankanschluss 20 x 10 mm" },
+    #{ "code_name": "SL_406105", "title": "406105  Fensterbankanschluss 20 x 10 mm" },
     { "code_name": "SL_416148", "title": "406105 / 416148 Fensterbankanschluss 20 x 10 mm" }
   ]
 }
@@ -256,8 +258,8 @@ GE76_2D_ZUSTAPROFILES={
 GE76_3D_ZUSTAPROFILES={
   "oben": [
     { "code_name": "INVISIVENT", "title": "Lüfter RENSON INVISIVENT" },
-    { "code_name": "SL_406140", "title": "406140  Fensterbankanschluss 40 x 20 mm" },
-    { "code_name": "SL_406158", "title": "406158 Fensterbankanschluss 21 x 20 mm" },
+    #{ "code_name": "SL_406140", "title": "406140  Fensterbankanschluss 40 x 20 mm" },
+    #{ "code_name": "SL_406158", "title": "406158 Fensterbankanschluss 21 x 20 mm" },
     { "code_name": "SL_406177", "title": "406177 Verbreiterung 100x60 mm / SL 76" },
     { "code_name": "SL_416133", "title": "416133  Fensterbankanschluss 30 x 21 mm" },
     { "code_name": "SL_416135", "title": "416135  Fensterbankanschluss 50 x 21 mm" },
@@ -271,12 +273,12 @@ GE76_3D_ZUSTAPROFILES={
     { "code_name": "SL_416168", "title": "416168 Verbreiterung 60x60 mm / SL 76 (alternativ für BE92)" },
     { "code_name": "SL_416170", "title": "416170 Verbreiterung 60 mm / SL 76" },
     { "code_name": "SL_416177", "title": "416177 Verbreiterung 100 mm / SL 76 (alternativ für BE92)" },
-    { "code_name": "SL_406105", "title": "406105  Fensterbankanschluss 20 x 10 mm" },
+    #{ "code_name": "SL_406105", "title": "406105  Fensterbankanschluss 20 x 10 mm" },
     { "code_name": "SL_416148", "title": "406105 / 416148 Fensterbankanschluss 20 x 10 mm" }
   ],
   "links": [
-    { "code_name": "SL_406140", "title": "406140  Fensterbankanschluss 40 x 20 mm" },
-    { "code_name": "SL_406158", "title": "406158 Fensterbankanschluss 21 x 20 mm" },
+    #{ "code_name": "SL_406140", "title": "406140  Fensterbankanschluss 40 x 20 mm" },
+    #{ "code_name": "SL_406158", "title": "406158 Fensterbankanschluss 21 x 20 mm" },
     { "code_name": "SL_406177", "title": "406177 Verbreiterung 100x60 mm / SL 76" },
     { "code_name": "SL_416133", "title": "416133  Fensterbankanschluss 30 x 21 mm" },
     { "code_name": "SL_416135", "title": "416135  Fensterbankanschluss 50 x 21 mm" },
@@ -290,7 +292,7 @@ GE76_3D_ZUSTAPROFILES={
     { "code_name": "SL_416168", "title": "416168 Verbreiterung 60x60 mm / SL 76 (alternativ für BE92)" },
     { "code_name": "SL_416170", "title": "416170 Verbreiterung 60 mm / SL 76" },
     { "code_name": "SL_416177", "title": "416177 Verbreiterung 100 mm / SL 76 (alternativ für BE92)" },
-    { "code_name": "SL_406105", "title": "406105  Fensterbankanschluss 20 x 10 mm" },
+    #{ "code_name": "SL_406105", "title": "406105  Fensterbankanschluss 20 x 10 mm" },
     { "code_name": "SL_416148", "title": "406105 / 416148 Fensterbankanschluss 20 x 10 mm" }
   ],
   "unten": [
@@ -321,8 +323,8 @@ GE76_3D_ZUSTAPROFILES={
     { "code_name": "SL_416148", "title": "406105 / 416148 Fensterbankanschluss 20 x 10 mm" }
   ],
   "rechts": [
-    { "code_name": "SL_406140", "title": "406140  Fensterbankanschluss 40 x 20 mm" },
-    { "code_name": "SL_406158", "title": "406158 Fensterbankanschluss 21 x 20 mm" },
+    #{ "code_name": "SL_406140", "title": "406140  Fensterbankanschluss 40 x 20 mm" },
+    #{ "code_name": "SL_406158", "title": "406158 Fensterbankanschluss 21 x 20 mm" },
     { "code_name": "SL_406177", "title": "406177 Verbreiterung 100x60 mm / SL 76" },
     { "code_name": "SL_416133", "title": "416133  Fensterbankanschluss 30 x 21 mm" },
     { "code_name": "SL_416135", "title": "416135  Fensterbankanschluss 50 x 21 mm" },
@@ -336,7 +338,7 @@ GE76_3D_ZUSTAPROFILES={
     { "code_name": "SL_416168", "title": "416168 Verbreiterung 60x60 mm / SL 76 (alternativ für BE92)" },
     { "code_name": "SL_416170", "title": "416170 Verbreiterung 60 mm / SL 76" },
     { "code_name": "SL_416177", "title": "416177 Verbreiterung 100 mm / SL 76 (alternativ für BE92)" },
-    { "code_name": "SL_406105", "title": "406105  Fensterbankanschluss 20 x 10 mm" },
+    #{ "code_name": "SL_406105", "title": "406105  Fensterbankanschluss 20 x 10 mm" },
     { "code_name": "SL_416148", "title": "406105 / 416148 Fensterbankanschluss 20 x 10 mm" }
   ]
 }

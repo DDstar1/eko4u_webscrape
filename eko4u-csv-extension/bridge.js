@@ -12,7 +12,8 @@
       type: "WORKSHOP_CAPTURED",
       payload: event.data.payload,
       response: event.data.response,
-      url: event.data.url
+      url: event.data.url,
+      headers: event.data.headers
     });
   });
 

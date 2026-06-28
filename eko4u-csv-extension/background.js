@@ -1,4 +1,19 @@
-let lastCapture = null; // { payload, response, url, timestamp }
+let lastCapture = null; // { payload, response, url, headers, timestamp }
+let lastRequestHeaders = null; // full outgoing headers from webRequest (incl. Cookie, User-Agent, etc.)
+
+// JS (fetch/XHR) cannot read or set browser-managed headers like Cookie,
+// User-Agent, Referer, Accept-Encoding, sec-ch-ua, etc. webRequest sees the
+// real outgoing headers, including those, right before the request is sent.
+chrome.webRequest.onBeforeSendHeaders.addListener(
+  (details) => {
+    if (details.method !== "POST" || !details.url.includes("configurator.workshop")) return;
+    lastRequestHeaders = Object.fromEntries(
+      (details.requestHeaders || []).map((h) => [h.name, h.value])
+    );
+  },
+  { urls: ["https://eko4u.com/*"] },
+  ["requestHeaders", "extraHeaders"]
+);
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.type === "WORKSHOP_CAPTURED") {
@@ -6,6 +21,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
       payload:   message.payload,    // POST request body fields
       response:  message.response,   // POST response JSON
       url:       message.url,
+      headers:   lastRequestHeaders || message.headers,
       timestamp: new Date().toISOString()
     };
     console.log("[Eko4u] Captured:", lastCapture);

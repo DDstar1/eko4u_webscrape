@@ -1,5 +1,6 @@
 import csv
 import json
+import re
 import socket
 import sys
 import time
@@ -8,7 +9,6 @@ import urllib.request
 from pathlib import Path
 from urllib.parse import urlencode
 
-from headers import HEADERS
 from lookup import ITEMS, SYSTEMS
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
@@ -17,6 +17,7 @@ BASE_DIR = Path(__file__).parent
 REQUESTS_DIR = BASE_DIR / "requests"
 OUTPUT_DIR = BASE_DIR / "excel_outputs"
 DIMENSIONS_FILE = BASE_DIR.parent / "all_dimensions.csv"
+HEADERS_FILE = BASE_DIR.parent / "headers.csv"
 URL = "https://eko4u.com/?p=configurator.workshop"
 ITEM_KEY = "WORKSHOP[CONFIGS][CONFIG][0][ITEM]"
 SYSTEM_KEY = "WORKSHOP[CONFIGS][CONFIG][0][SYSTEM]"
@@ -32,6 +33,13 @@ def load_payload_template(csv_path):
         reader = csv.reader(f)
         next(reader)  # skip PATH,VALUE header
         return [(row[0], row[1]) for row in reader]
+
+
+def load_headers():
+    with open(HEADERS_FILE, newline="", encoding="utf-8") as f:
+        reader = csv.reader(f)
+        next(reader)  # skip PATH,VALUE header
+        return {row[0]: row[1] for row in reader if row}
 
 
 def check_filename_matches_content(csv_path, template):
@@ -65,8 +73,10 @@ def build_payload(template, width, height):
 
 
 def fetch_price(payload):
-    headers = dict(HEADERS)
-    headers["accept-encoding"] = "identity"
+    headers = load_headers()
+    for key in [k for k in headers if k.lower() == "accept-encoding"]:
+        del headers[key]
+    headers["Accept-Encoding"] = "identity"
     data = urlencode(payload).encode("utf-8")
     req = urllib.request.Request(URL, data=data, headers=headers, method="POST")
 
@@ -83,9 +93,17 @@ def fetch_price(payload):
     price_raw = parsed.get("PRICE", "")
     if not price_raw:
         return None
+    return parse_price(price_raw)
+
+
+def parse_price(price_raw):
     cleaned = price_raw.replace("\xa0", "").replace("€", "").strip()
-    cleaned = cleaned.replace(".", "").replace(",", ".")
-    return float(cleaned)
+    decimal_pos = max(cleaned.rfind(","), cleaned.rfind("."))
+    if decimal_pos == -1:
+        return float(cleaned)
+    integer_part = re.sub(r"[.,]", "", cleaned[:decimal_pos])
+    decimal_part = cleaned[decimal_pos + 1:]
+    return float(f"{integer_part}.{decimal_part}")
 
 
 def output_path_for(stem):

@@ -28,7 +28,7 @@ function objToPathValueRows(obj) {
   return rows.join("\n");
 }
 
-function buildCSV(capture) {
+function buildPayloadCSV(capture) {
   const { payload, response } = capture;
   const lines = [];
 
@@ -58,6 +58,33 @@ function buildCSV(capture) {
   return lines.join("\n");
 }
 
+function buildHeadersCSV(capture) {
+  const { headers } = capture;
+  if (!headers || Object.keys(headers).length === 0) return "";
+  return objToPathValueRows(headers);
+}
+
+// ── Tab handling ────────────────────────────────────────────────────────
+
+function activeTab() {
+  return document.querySelector(".tab.active")?.dataset.tab || "payload";
+}
+
+function activeTextarea() {
+  return activeTab() === "headers"
+    ? document.getElementById("headersOutput")
+    : document.getElementById("payloadOutput");
+}
+
+document.querySelectorAll(".tab").forEach((tab) => {
+  tab.addEventListener("click", () => {
+    document.querySelectorAll(".tab").forEach((t) => t.classList.remove("active"));
+    document.querySelectorAll(".tab-panel").forEach((p) => p.classList.remove("active"));
+    tab.classList.add("active");
+    document.getElementById(`panel-${tab.dataset.tab}`).classList.add("active");
+  });
+});
+
 // ── UI helpers ────────────────────────────────────────────────────────────
 
 function showPriceBanner(response) {
@@ -78,8 +105,9 @@ function showPriceBanner(response) {
 
 function load() {
   chrome.runtime.sendMessage({ type: "GET_LAST_CAPTURE" }, (capture) => {
-    const statusEl = document.getElementById("status");
-    const csvEl    = document.getElementById("csvOutput");
+    const statusEl        = document.getElementById("status");
+    const payloadOutputEl = document.getElementById("payloadOutput");
+    const headersOutputEl = document.getElementById("headersOutput");
 
     if (chrome.runtime.lastError) {
       statusEl.textContent = "Error: " + chrome.runtime.lastError.message;
@@ -89,12 +117,15 @@ function load() {
     if (!capture) {
       statusEl.textContent =
         "No POST captured yet. Trigger the configurator on eko4u.com first.";
-      csvEl.value = "";
+      payloadOutputEl.value = "";
+      headersOutputEl.value = "";
       return;
     }
 
     showPriceBanner(capture.response);
-    csvEl.value = buildCSV(capture);
+    payloadOutputEl.value = buildPayloadCSV(capture);
+    headersOutputEl.value = buildHeadersCSV(capture) ||
+      "No headers captured for this request.";
     statusEl.textContent =
       `✅ Captured at ${capture.timestamp}  |  ${capture.url}`;
   });
@@ -103,16 +134,17 @@ function load() {
 document.getElementById("refreshBtn").addEventListener("click", load);
 
 document.getElementById("copyBtn").addEventListener("click", () => {
-  const csv = document.getElementById("csvOutput").value;
+  const csv = activeTextarea().value;
   if (csv) navigator.clipboard.writeText(csv).then(() => alert("CSV copied!"));
 });
 
 document.getElementById("downloadBtn").addEventListener("click", () => {
-  const csv = document.getElementById("csvOutput").value;
+  const csv = activeTextarea().value;
   if (!csv) return;
+  const suffix = activeTab();
   const a = Object.assign(document.createElement("a"), {
     href: URL.createObjectURL(new Blob([csv], { type: "text/csv" })),
-    download: `eko4u-workshop-${Date.now()}.csv`
+    download: `eko4u-workshop-${suffix}-${Date.now()}.csv`
   });
   a.click();
 });

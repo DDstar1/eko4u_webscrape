@@ -26,7 +26,20 @@
     } catch (_) { return {}; }
   }
 
-  function sendToBackground(payload, response, url) {
+  // Normalize fetch's options.headers (Headers instance, array of pairs,
+  // or plain object) into a plain object.
+  function normalizeHeaders(headers) {
+    if (!headers) return {};
+    if (headers instanceof Headers) {
+      const obj = {};
+      for (const [k, v] of headers.entries()) obj[k] = v;
+      return obj;
+    }
+    if (Array.isArray(headers)) return Object.fromEntries(headers);
+    return { ...headers };
+  }
+
+  function sendToBackground(payload, response, url, headers) {
     // This script runs in the page's MAIN world, which has no access to
     // chrome.runtime. Relay via postMessage to bridge.js (ISOLATED world),
     // which forwards it on to the background service worker.
@@ -34,7 +47,8 @@
       type: "EKO4U_WORKSHOP_CAPTURED",
       payload,
       response,
-      url
+      url,
+      headers
     }, "*");
   }
 
@@ -59,10 +73,12 @@
       }
       const payload = parseBody(bodyText);
 
+      const headers = normalizeHeaders(options.headers);
+
       // Make the real request and intercept response
       const res = await _fetch.apply(this, args);
       const respData = await parseResponse(res);
-      sendToBackground(payload, respData, url);
+      sendToBackground(payload, respData, url, headers);
       return res;
     }
 
@@ -72,11 +88,18 @@
   // ── Intercept XMLHttpRequest ─────────────────────────────────────────────
   const _open = XMLHttpRequest.prototype.open;
   const _send = XMLHttpRequest.prototype.send;
+  const _setRequestHeader = XMLHttpRequest.prototype.setRequestHeader;
 
   XMLHttpRequest.prototype.open = function (method, url, ...rest) {
-    this._eko4uMethod = method;
-    this._eko4uUrl    = url;
+    this._eko4uMethod  = method;
+    this._eko4uUrl     = url;
+    this._eko4uHeaders = {};
     return _open.apply(this, [method, url, ...rest]);
+  };
+
+  XMLHttpRequest.prototype.setRequestHeader = function (name, value) {
+    if (this._eko4uHeaders) this._eko4uHeaders[name] = value;
+    return _setRequestHeader.apply(this, arguments);
   };
 
   XMLHttpRequest.prototype.send = function (body) {
@@ -92,13 +115,15 @@
         payload = parseBody(body);
       }
 
+      const headers = { ...this._eko4uHeaders };
+
       // Listen for the response
       this.addEventListener("load", () => {
         let respData = {};
         try { respData = JSON.parse(this.responseText); } catch (_) {
           respData = { raw_response: this.responseText?.substring(0, 500) };
         }
-        sendToBackground(payload, respData, this._eko4uUrl);
+        sendToBackground(payload, respData, this._eko4uUrl, headers);
       });
     }
 

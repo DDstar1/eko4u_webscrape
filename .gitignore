@@ -1,3 +1,4 @@
 headers.py
+headers.csv
 *.lock
 __pycache__/
