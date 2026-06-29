@@ -1,4 +1,5 @@
 import csv
+import http.client
 import json
 import re
 import socket
@@ -25,7 +26,13 @@ WIDTH_KEY = "WORKSHOP[CONFIGS][CONFIG][0][WIDTH]"
 HEIGHT_KEY = "WORKSHOP[CONFIGS][CONFIG][0][HEIGHT]"
 REQUEST_DELAY_SECONDS = 0.4
 NETWORK_RETRY_DELAY_SECONDS = 10
-NETWORK_ERRORS = (urllib.error.URLError, socket.timeout, ConnectionError, TimeoutError)
+NETWORK_ERRORS = (
+    urllib.error.URLError,
+    socket.timeout,
+    ConnectionError,
+    TimeoutError,
+    http.client.IncompleteRead,
+)
 
 
 def load_payload_template(csv_path):
